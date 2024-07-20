@@ -1,0 +1,88 @@
+---
+title: Home
+layout: home
+---
+
+<article>
+  <h1>
+      What is it?
+  </h1>
+
+  <p>Event Better Specs is an <i>opinionated</i> set of best practices to support the creation of tests that are easy to read and maintain.</p>
+
+  <p>It focus on the <a href="https://www.ruby-lang.org/en/">Ruby</a> testing framework <a href="https://rspec.info/">RSpec</a>, but some of it could potentially be applied to other frameworks (like <a href="https://github.com/sus-rb/sus">sus</a>) and languages (like <a href="https://crystal-lang.org/reference/1.13/guides/testing.html">Crystal</a>).</p>
+
+  <h2>
+      Guiding principles
+  </h2>
+
+  <ul>
+    <li>
+      tests must be <a href="https://thoughtbot.com/blog/the-self-contained-test">self-contained</a>, not DRY
+    </li>
+    <li>
+      tests should follow the <a href="https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/">Arrange-Act-Assert</a> pattern
+    </li>
+  </ul>
+</article>
+
+<article>
+  <h2 id="describe">
+    <a href="#describe">
+      Describe what you are testing
+    </a>
+  </h2>
+
+  <p>Be clear about what method you are describing. For instance, use the Ruby documentation convention of <code>.</code> when referring to a class method's name and <code>#</code> when referring to an instance method's name.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+describe 'the authenticate method for User' do
+describe 'if the user is an admin' do
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '.authenticate' do
+describe '#admin?' do
+{% endhighlight %}
+  </div>
+</article>
+
+
+<article>
+  <h2 id="use-context">
+    <a href="#use-context">
+      Use context
+    </a>
+  </h2>
+
+  <p>Contexts are a powerful way to make your tests clear and well organized (they keep tests easy to read). They should start with <code>when</code>.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+it 'has 200 status code if logged in' do
+  expect(response).to respond_with 200
+end
+
+describe 'it returns 401 status code if not logged in' do
+  expect(response).to respond_with 401
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+context 'when logged in' do
+  it { is_expected.to respond_with 200 }
+end
+
+context 'when logged out' do
+  it 'returns 401 status code' do
+    expect(response).to respond_with 401
+  end
+end
+{% endhighlight %}
+  </div>
+</article>

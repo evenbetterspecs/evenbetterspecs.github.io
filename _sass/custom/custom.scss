@@ -1,0 +1,43 @@
+.bad,
+.good {
+  background: #e8e8e8;
+  padding: 5px 0px 0px 0;
+
+  &::before {
+    padding: 0 10px;
+  }
+
+  .highlight {
+    margin-top: 3px;
+  }
+}
+
+.bad {
+  color: red;
+
+  &::before {
+    content: "BAD";
+  }
+}
+
+.good {
+  color: green;
+
+  &::before {
+    content: "GOOD";
+  }
+}
+
+.main-content {
+  article:not(:last-child) {
+    margin-bottom: 4em;
+  }
+
+  h2 {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    margin-bottom: 0.75em;
+  }
+}

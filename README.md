@@ -1,12 +1,12 @@
 # Even Better Specs
 
-Guidelines for readable and maintainable tests.
+Event Better Specs is an opinionated set of best practices to support the creation of tests that are easy to read and maintain.
 
 ## Guiding principles
 
 Our guidelines are based on two fundamental principles:
 
-- tests must be [self-contained](https://automationpanda.com/2020/07/07/,arrange-act-assert-a-pattern-for-writing-good-tests/), not DRY
+- tests must be [self-contained](https://thoughtbot.com/blog/the-self-contained-test/), not DRY
 - tests should follow the [Arrange-Act-Assert](https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/) pattern
 
 ## Acknowledgment

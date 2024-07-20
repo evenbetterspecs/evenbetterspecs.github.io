@@ -5,4 +5,19 @@ theme: just-the-docs
 url: https://evenbetterspecs.github.io
 
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  GitHub: https://github.com/evenbetterspecs/evenbetterspecs.github.io
+
+# External navigation links
+nav_external_links:
+  # - title: What is it
+  #   url: "#what-is-it"
+  #   hide_icon: true
+  # - title: Guiding principles
+  #   url: "#guiding-principles"
+  #   hide_icon: true
+  - title: Describe what you are testing
+    url: "#describe"
+    hide_icon: true
+  - title: Use context
+    url: "#use-context"
+    hide_icon: true
