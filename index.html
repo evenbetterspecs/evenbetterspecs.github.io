@@ -86,3 +86,269 @@ end
 {% endhighlight %}
   </div>
 </article>
+
+
+<article>
+  <h2 id="all-possible-cases">
+    <a href="#all-possible-cases">
+      All possible cases
+    </a>
+  </h2>
+
+  <p>Testing is a good practice, but if you do not test the edge cases, it will not be useful. Test valid, edge and invalid case. For example, consider the following action..</p>
+
+  <p class="note alert">If you have way too many cases to test, it might be an indication your subject class is doing too much and must be break down into other classes.</p>
+
+  <div class="example">
+{% highlight ruby %}
+before_action :authenticate_user!
+before_action :find_product
+
+def destroy
+  @product.destroy
+  redirect_to products_path
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+describe "#destroy" do
+  context "when product exists" do
+    it "deletes the product" do
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe "#destroy" do
+  context "when product exists" do
+    it "deletes the product" do
+    end
+  end
+
+  context "when product does not exist" do
+    it "raises 404" do
+    end
+  end
+
+  context "when user is not authenticated" do
+    it "raises 404" do
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+</article>
+
+
+<article>
+  <h2 id="expect-vs-should">
+    <a href="#expect-vs-should">
+      Expect vs should syntax
+    </a>
+  </h2>
+
+  <p>Always use <code>expect</code> instead of <code>should</code>.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+it 'creates a resource' do
+  response.code.should eq('200')
+end"
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+it 'creates a resource' do
+  expect(response.code).to eq('200')
+end
+{% endhighlight %}
+  </div>
+</article>
+
+
+<article>
+  <h2 id="lets-not">
+    <a href="#lets-not">
+      Let's not
+    </a>
+  </h2>
+
+  <p>Do not use <code>let</code> / <code>let!</code>. These tend to turn your tests very complicated over time as one needs to look up variables defined then apply deltas to figure their current state. Read more <a href="https://thoughtbot.com/blog/lets-not">here</a>.</p>
+
+  <p class="note info">Tests are not supposed to be DRY, but easy to read and maintain.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+
+describe '#name' do
+  let(:user) { create(:user, fist_name: 'Ayrton', last_name: 'Senna') }
+
+  context 'when first name and last name are present' do
+    it 'returns the full name' do
+      expect(user.name).to eq('Ayrton Senna')
+    end
+  end
+
+  context 'when last name is not present' do
+    it 'returns the first name' do
+      user.last_name = nil
+      expect(user.name).to eq('Ayrton')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#name' do
+  context 'when first name and last name are present' do
+    it 'returns the full name' do
+      user = create(:user, fist_name: 'Ayrton', last_name: 'Senna')
+      expect(user.name).to eq('Ayrton Senna')
+    end
+  end
+
+  context 'when last name is not present' do
+    it 'returns the first name' do
+      user = create(:user, fist_name: 'Ayrton', last_name: nil)
+      expect(user.name).to eq('Ayrton')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+</article>
+
+
+
+<article>
+  <h2 id="avoid-hooks">
+    <a href="#avoid-hooks">
+      Avoid hooks
+    </a>
+  </h2>
+
+  <p>Avoid hooks whenever possible since they tend to make your tests complicated over time.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#index' do
+  context 'when user is authenticated' do
+    before do
+      @user = create(:user)
+      sign_in @user
+    end
+
+    context 'when user is admin' do
+      it 'returns 200' do
+      end
+    end
+
+    context 'when user is not admin' do
+      it 'returns 401' do
+      end
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#index' do
+  context 'when user is authenticated' do
+    context 'when user is admin' do
+      it 'returns 200' do
+        user = create(:user)
+        sign_in user
+      end
+    end
+
+    context 'when user is not admin' do
+      it 'returns 401' do
+        user = create(:user)
+        sign_in user
+      end
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+</article>
+
+
+<article>
+  <h2 id="mock-external-dependencies">
+    <a href="#mock-external-dependencies">
+      Mock external dependencies
+    </a>
+  </h2>
+
+  <p>Mock external dependencies to your test subject. By external dependencies I mean code that's not the main responsibility of the subject under test.</p>
+
+  <div class="example">
+{% highlight ruby %}
+def github_stars(repository_id)
+  stars = Github.fetch_repository_stars(repository_id)
+  "Stars: #{stars}"
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#github_stars' do
+  it 'displays the number of stars' do
+    expect(subject.github_stars(1)).to eq('Stars: 10')
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#github_stars' do
+  it 'displays the number of stars' do
+    expect(Github).to receive(:fetch_repository_stars).with(1).and_return(10)
+    expect(subject.github_stars(1)).to eq('Stars: 10')
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <p>
+    Unless you intentionally want to test the underlying dependencies. This type of test must be limited to very few cases though otherwise it will make your test suite slow and hard to maintain.
+  </p>
+
+  <div class="example">
+{% highlight ruby %}
+def process(payload)
+  UserCreator.new(payload).create
+  ProductCreator.new(payload).create
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#process' do
+  it 'creates a user and a product' do
+    payload = { user: { name: 'John' }, product: { name: 'Book' } }
+
+    subject.process(payload)
+
+    expect(User.count).to eq(1)
+    expect(Product.count).to eq(1)
+  end
+end
+{% endhighlight %}
+  </div>
+
+</article>

@@ -21,3 +21,18 @@ nav_external_links:
   - title: Use context
     url: "#use-context"
     hide_icon: true
+  - title: All possible cases
+    url: "#all-possible-cases"
+    hide_icon: true
+  - title: Expect vs should
+    url: "#expect-vs-should"
+    hide_icon: true
+  - title: Let's not
+    url: "#lets-not"
+    hide_icon: true
+  - title: Avoid hooks
+    url: "#avoid-hooks"
+    hide_icon: true
+  - title: Mock external dependencies
+    url: "#mock-external-dependencies"
+    hide_icon: true
