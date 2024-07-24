@@ -87,6 +87,80 @@ end
   </div>
 </article>
 
+<article>
+  <h2 id="short-description">
+    <a href="#short-description">
+      Short description 
+    </a>
+  </h2>
+
+  <p>A spec description should never be longer than 40 characters. If this happens you should split it using a context.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+it 'has 422 status code if an unexpected params will be added' do
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+context 'when not valid' do
+  it { is_expected.to respond_with 422 }
+end
+{% endhighlight %}
+  </div>
+
+  <p>
+    In the example we removed the description related to the status code, which has been replaced by the 
+    expectation <code>is_expected</code>. If you run this test typing rspec filename you will obtain a readable 
+    output.
+  </p>
+
+  <div class="output">
+{% highlight ruby %}
+when not valid
+  it should respond with 422
+{% endhighlight %}
+  </div>
+</article>
+
+<article>
+  <h2 id="single-expectation">
+    <a href="#single-expectation">
+      Single expectation 
+    </a>
+  </h2>
+
+  <p>
+    The 'one expectation' tip is more broadly expressed as 'each test should make only one assertion'. 
+    This helps you on finding possible errors, going directly to the failing test, and to make your code 
+    readable. In isolated unit specs, you want each example to specify one (and only one) behavior. 
+    Multiple expectations in the same example are a signal that you may be specifying multiple behaviors.
+  </p>
+
+  <div class="good">
+{% highlight ruby %}
+it { is_expected.to respond_with_content_type(:json) }
+it { is_expected.to assign_to(:resource) }
+{% endhighlight %}
+  </div>
+
+  <p>
+    Anyway, in tests that are not isolated (e.g. ones that integrate with a DB, an external webservice, or 
+    end-to-end-tests), you take a massive performance hit to do the same setup over and over again, 
+    just to set a different expectation in each test. In these sorts of slower tests, I think it's fine to 
+    specify more than one isolated behavior.
+  </p>
+
+  <div class="good">
+{% highlight ruby %}
+it 'creates a resource' do
+  expect(response).to respond_with_content_type(:json)
+  expect(response).to assign_to(:resource)
+end
+{% endhighlight %}
+  </div>
+</article>
 
 <article>
   <h2 id="all-possible-cases">

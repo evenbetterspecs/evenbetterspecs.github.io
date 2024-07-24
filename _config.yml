@@ -21,6 +21,12 @@ nav_external_links:
   - title: Use contexts
     url: "#use-contexts"
     hide_icon: true
+  - title: Short description
+    url: "#short-description"
+    hide_icon: true
+  - title: Single expectation
+    url: "#single-expectation"
+    hide_icon: true
   - title: All possible cases
     url: "#all-possible-cases"
     hide_icon: true

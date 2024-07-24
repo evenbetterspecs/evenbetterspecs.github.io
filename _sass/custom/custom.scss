@@ -1,6 +1,7 @@
 .example,
 .bad,
-.good {
+.good,
+.output {
   background: #e8e8e8;
   padding: 5px 0px 0px 0;
 
@@ -26,6 +27,14 @@
 
   &::before {
     content: "GOOD";
+  }
+}
+
+.output {
+  color: #bbb;
+
+  &::before {
+    content: "FORMATTED OUTPUT";
   }
 }
 
