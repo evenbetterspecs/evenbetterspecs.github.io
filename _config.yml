@@ -36,3 +36,9 @@ nav_external_links:
   - title: Mock external dependencies
     url: "#mock-external-dependencies"
     hide_icon: true
+  - title: Create only the data you need
+    url: "#create-only-the-data-you-need"
+    hide_icon: true
+  - title: Don't use shared examples
+    url: "#dont-use-shared-examples"
+    hide_icon: true
