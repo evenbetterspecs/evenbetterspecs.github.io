@@ -52,9 +52,9 @@ describe '#admin?' do
 
 
 <article>
-  <h2 id="use-context">
-    <a href="#use-context">
-      Use context
+  <h2 id="use-contexts">
+    <a href="#use-contexts">
+      Use contexts
     </a>
   </h2>
 
@@ -63,11 +63,11 @@ describe '#admin?' do
   <div class="bad">
 {% highlight ruby %}
 it 'has 200 status code if logged in' do
-  expect(response).to respond_with 200
+  expect(response.code).to eq('200')
 end
 
 describe 'it returns 401 status code if not logged in' do
-  expect(response).to respond_with 401
+  expect(response.code).to eq('401')
 end
 {% endhighlight %}
   </div>
@@ -75,12 +75,12 @@ end
   <div class="good">
 {% highlight ruby %}
 context 'when logged in' do
-  it { is_expected.to respond_with 200 }
+  expect(response.code).to eq('200')
 end
 
 context 'when logged out' do
   it 'returns 401 status code' do
-    expect(response).to respond_with 401
+    expect(response.code).to eq('401')
   end
 end
 {% endhighlight %}
@@ -347,6 +347,54 @@ describe '#process' do
     expect(User.count).to eq(1)
     expect(Product.count).to eq(1)
   end
+end
+{% endhighlight %}
+  </div>
+</article>
+
+
+
+<article>
+  <h2 id="stub-http-requests">
+    <a href="#stub-http-requests">
+      Stub HTTP requests
+    </a>
+  </h2>
+
+  <p>Sometimes you need to access external services. In these cases you can't rely on the real service but you should stub it with solutions like <a href="https://github.com/bblimke/webmock" target="_blank">webmock</a> or <a href="https://github.com/vcr/vcr" target="_blank">VCR</a>.</p>
+
+  <div class="example">
+{% highlight ruby %}
+def request
+  uri = URI.parse("http://www.example.com/")
+  request = Net::HTTP::Post.new(uri.path)
+  request['Content-Length'] = 3
+
+  Net::HTTP.start(uri.host, uri.port) do |http|
+    http.request(request, "abc")
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#request' do
+  response = subject.request
+
+  expect(response.code).to eq('200')
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#request' do
+  stub_request(:post, "www.example.com").with(body: "abc", headers: { 'Content-Length' => 3 })
+
+  response = subject.request
+
+  expect(response.code).to eq('200')
 end
 {% endhighlight %}
   </div>
