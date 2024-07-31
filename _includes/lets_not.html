@@ -1,0 +1,53 @@
+<article>
+  <h2 id="lets-not">
+    <a href="#lets-not">
+      Let's not
+    </a>
+  </h2>
+
+  <p>Do not use <code>let</code> / <code>let!</code>. These tend to turn your tests very complicated over time as one needs to look up variables defined then apply deltas to figure their current state. Read more <a href="https://thoughtbot.com/blog/lets-not">here</a>.</p>
+
+  <p class="note info">Tests are not supposed to be DRY, but easy to read and maintain.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+
+describe '#name' do
+  let(:user) { create(:user, fist_name: 'Ayrton', last_name: 'Senna') }
+
+  context 'when first name and last name are present' do
+    it 'returns the full name' do
+      expect(user.name).to eq('Ayrton Senna')
+    end
+  end
+
+  context 'when last name is not present' do
+    it 'returns the first name' do
+      user.last_name = nil
+      expect(user.name).to eq('Ayrton')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#name' do
+  context 'when first name and last name are present' do
+    it 'returns the full name' do
+      user = create(:user, fist_name: 'Ayrton', last_name: 'Senna')
+      expect(user.name).to eq('Ayrton Senna')
+    end
+  end
+
+  context 'when last name is not present' do
+    it 'returns the first name' do
+      user = create(:user, fist_name: 'Ayrton', last_name: nil)
+      expect(user.name).to eq('Ayrton')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+</article>

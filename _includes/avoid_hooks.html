@@ -1,0 +1,54 @@
+<article>
+  <h2 id="avoid-hooks">
+    <a href="#avoid-hooks">
+      Avoid hooks
+    </a>
+  </h2>
+
+  <p>Avoid hooks whenever possible since they tend to make your tests complicated over time.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#index' do
+  context 'when user is authenticated' do
+    before do
+      @user = create(:user)
+      sign_in @user
+    end
+
+    context 'when user is admin' do
+      it 'returns 200' do
+      end
+    end
+
+    context 'when user is not admin' do
+      it 'returns 401' do
+      end
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#index' do
+  context 'when user is authenticated' do
+    context 'when user is admin' do
+      it 'returns 200' do
+        user = create(:user)
+        sign_in user
+      end
+    end
+
+    context 'when user is not admin' do
+      it 'returns 401' do
+        user = create(:user)
+        sign_in user
+      end
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+</article>
