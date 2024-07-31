@@ -1,0 +1,45 @@
+<article>
+  <h2 id="stub-http-requests">
+    <a href="#stub-http-requests">
+      Stub HTTP requests
+    </a>
+  </h2>
+
+  <p>Sometimes you need to access external services. In these cases you can't rely on the real service but you should stub it with solutions like <a href="https://github.com/bblimke/webmock" target="_blank">webmock</a> or <a href="https://github.com/vcr/vcr" target="_blank">VCR</a>.</p>
+
+  <div class="example">
+{% highlight ruby %}
+def request
+  uri = URI.parse("http://www.example.com/")
+  request = Net::HTTP::Post.new(uri.path)
+  request['Content-Length'] = 3
+
+  Net::HTTP.start(uri.host, uri.port) do |http|
+    http.request(request, "abc")
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#request' do
+  response = subject.request
+
+  expect(response.code).to eq('200')
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#request' do
+  stub_request(:post, "www.example.com").with(body: "abc", headers: { 'Content-Length' => 3 })
+
+  response = subject.request
+
+  expect(response.code).to eq('200')
+end
+{% endhighlight %}
+  </div>
+</article>

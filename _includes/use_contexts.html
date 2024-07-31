@@ -1,7 +1,7 @@
 <article>
-  <h2 id="use-context">
-    <a href="#use-context">
-      Use context
+  <h2 id="use-contexts">
+    <a href="#use-contexts">
+      Use contexts
     </a>
   </h2>
 
@@ -10,11 +10,11 @@
   <div class="bad">
 {% highlight ruby %}
 it 'has 200 status code if logged in' do
-  expect(response).to respond_with 200
+  expect(response.code).to eq('200')
 end
 
 describe 'it returns 401 status code if not logged in' do
-  expect(response).to respond_with 401
+  expect(response.code).to eq('401')
 end
 {% endhighlight %}
   </div>
@@ -22,12 +22,12 @@ end
   <div class="good">
 {% highlight ruby %}
 context 'when logged in' do
-  it { is_expected.to respond_with 200 }
+  expect(response.code).to eq('200')
 end
 
 context 'when logged out' do
   it 'returns 401 status code' do
-    expect(response).to respond_with 401
+    expect(response.code).to eq('401')
   end
 end
 {% endhighlight %}

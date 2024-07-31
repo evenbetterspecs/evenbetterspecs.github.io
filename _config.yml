@@ -24,8 +24,8 @@ nav_external_links:
   - title: Short description
     url: "#short-description"
     hide_icon: true
-  - title: Grouped expectations
-    url: "#grouped-expectations"
+  - title: Group expectations
+    url: "#group-expectations"
     hide_icon: true
   - title: All possible cases
     url: "#all-possible-cases"
