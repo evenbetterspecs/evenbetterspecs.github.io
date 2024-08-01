@@ -39,6 +39,9 @@ nav_external_links:
   - title: Avoid hooks
     url: "#avoid-hooks"
     hide_icon: true
+  - title: Don't use shared examples
+    url: "#dont-use-shared-examples"
+    hide_icon: true
   - title: Mock external dependencies
     url: "#mock-external-dependencies"
     hide_icon: true
@@ -47,7 +50,4 @@ nav_external_links:
     hide_icon: true
   - title: Create only the data you need
     url: "#create-only-the-data-you-need"
-    hide_icon: true
-  - title: Don't use shared examples
-    url: "#dont-use-shared-examples"
     hide_icon: true

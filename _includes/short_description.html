@@ -1,36 +1,34 @@
 <article>
   <h2 id="short-description">
     <a href="#short-description">
-      Short description 
+      Short description
     </a>
   </h2>
 
-  <p>A spec description should never be longer than 100 characters. If this happens you should split it using a context.</p>
+  <p>A spec description must not be longer than 100 characters neither span many lines. If this happens you should split it using a context.</p>
 
   <div class="bad">
 {% highlight ruby %}
-it 'has 422 status code if an unexpected params will be added' do
+it 'returns 422 when users first_name is missing from params and when users last_name is missing from params' do
+end
+
+it 'returns 422 when users first_name is missing from params \
+    and when users last_name is missing from params' do
+end
 {% endhighlight %}
   </div>
 
   <div class="good">
 {% highlight ruby %}
-context 'when not valid' do
-  it { is_expected.to respond_with 422 }
+context 'when users first_name is missing from params' do
+  it 'returns 422' do
+  end
 end
-{% endhighlight %}
-  </div>
 
-  <p>
-    In the example we removed the description related to the status code, which has been replaced by the 
-    expectation <code>is_expected</code>. If you run this test typing rspec filename you will obtain a readable 
-    output.
-  </p>
-
-  <div class="output">
-{% highlight ruby %}
-when not valid
-  it should respond with 422
+context 'when users last_name is missing' do
+  it 'returns 422' do
+  end
+end
 {% endhighlight %}
   </div>
 </article>
