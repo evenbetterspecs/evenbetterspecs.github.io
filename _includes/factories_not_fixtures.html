@@ -1,0 +1,37 @@
+<article>
+  <h2 id="factories-not-fixtures">
+    <a href="#factories-not-fixtures">
+      Factories, not fixtures
+    </a>
+  </h2>
+
+  <p><a href="https://github.com/thoughtbot/factory_bot" target="_blank">Factories</a> are more flexible and easy to work with.</p>
+
+  <div class="example">
+{% highlight ruby %}
+def name
+  "#{first_name} #{last_name}"
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+it 'returns the full name' do
+  user = create(:user, fist_name: 'Ayrton', last_name: 'Senna')
+  expect(user.name).to eq('Ayrton Senna')
+end
+{% endhighlight %}
+  </div>
+
+  <p>If your code doesn't hit the database, prefer <code>build_stubbed</code> over <code>create</code> since the former will make your <a href="https://thoughtbot.com/blog/use-factory-bots-build-stubbed-for-a-faster-test" target="_blank">tests faster</a> 🔥</p>
+
+  <div class="good">
+{% highlight ruby %}
+it 'returns the full name' do
+  user = build_stubbed(:user, fist_name: 'Ayrton', last_name: 'Senna')
+  expect(user.name).to eq('Ayrton Senna')
+end
+{% endhighlight %}
+  </div>
+</article>

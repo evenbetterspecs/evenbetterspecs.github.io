@@ -12,7 +12,7 @@
 
   <div class="bad">
 {% highlight ruby %}
-it do
+it 'returns 200' do
   user = create(:user)
 
   get user_path(user)
@@ -20,7 +20,7 @@ it do
   expect(response.code).to eq('200')
 end
 
-it do
+it 'returns JSON content type' do
   user = create(:user)
 
   get user_path(user)
@@ -32,7 +32,7 @@ end
 
   <div class="good">
 {% highlight ruby %}
-it "responds with 200 http status and a JSON content type" do
+it 'responds with 200 http status and a JSON content type' do
   user = create(:user)
 
   get user_path(user)

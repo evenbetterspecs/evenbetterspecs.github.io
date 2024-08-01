@@ -33,6 +33,9 @@ nav_external_links:
   - title: Expect vs should
     url: "#expect-vs-should"
     hide_icon: true
+  - title: Factories, not fixtures
+    url: "#factories-not-fixtures"
+    hide_icon: true
   - title: Let's not
     url: "#lets-not"
     hide_icon: true

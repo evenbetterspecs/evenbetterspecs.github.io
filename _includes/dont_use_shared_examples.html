@@ -5,7 +5,7 @@
     </a>
   </h2>
 
-  <p><a href="https://rspec.info/features/3-12/rspec-core/example-groups/shared-examples/">Shared examples</a> is a feature that allow us to not repeat code, but tests are not real code, so introducing it increases the complexity of your suite</a>.</p>
+  <p><a href="https://rspec.info/features/3-12/rspec-core/example-groups/shared-examples/" target="_blank">Shared examples</a> is a feature that allow us to not repeat code, but tests are not real code, so introducing it increases the complexity of your suite</a>.</p>
 
   <div class="bad">
 {% highlight ruby %}
@@ -24,7 +24,7 @@ end
   <div class="good">
 {% highlight ruby %}
 RSpec.describe Dog do
-  it "barks and jumps" do
+  it 'barks and jumps' do
     subject = described_class.new(able_to_jump?: true, able_to_bark?: true)
 
     expect(subject).to be_able_to_jump
