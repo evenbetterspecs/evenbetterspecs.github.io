@@ -1,0 +1,23 @@
+<article>
+  <h2 id="describe">
+    <a href="#describe">
+      Describe what you are testing
+    </a>
+  </h2>
+
+  <p>Be clear about what method you are describing. For instance, use the Ruby documentation convention of <code>.</code> when referring to a class method's name and <code>#</code> when referring to an instance method's name.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+describe 'the authenticate method for User' do
+describe 'if the user is an admin' do
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '.authenticate' do
+describe '#admin?' do
+{% endhighlight %}
+  </div>
+</article>

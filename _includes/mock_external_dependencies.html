@@ -1,0 +1,67 @@
+<article>
+  <h2 id="mock-external-dependencies">
+    <a href="#mock-external-dependencies">
+      Mock external dependencies
+    </a>
+  </h2>
+
+  <p>Mock external dependencies to your test subject. By external dependencies I mean code that's not the main responsibility of the subject under test.</p>
+
+  <div class="example">
+{% highlight ruby %}
+def github_stars(repository_id)
+  stars = Github.fetch_repository_stars(repository_id)
+  "Stars: #{stars}"
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#github_stars' do
+  it 'displays the number of stars' do
+    expect(subject.github_stars(1)).to eq('Stars: 10')
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#github_stars' do
+  it 'displays the number of stars' do
+    expect(Github).to receive(:fetch_repository_stars).with(1).and_return(10)
+    expect(subject.github_stars(1)).to eq('Stars: 10')
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <p>
+    Unless you intentionally want to test the underlying dependencies. This type of test must be limited to very few cases though otherwise it will make your test suite slow and hard to maintain.
+  </p>
+
+  <div class="example">
+{% highlight ruby %}
+def process(payload)
+  UserCreator.new(payload).create
+  ProductCreator.new(payload).create
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#process' do
+  it 'creates a user and a product' do
+    payload = { user: { name: 'John' }, product: { name: 'Book' } }
+
+    subject.process(payload)
+
+    expect(User.count).to eq(1)
+    expect(Product.count).to eq(1)
+  end
+end
+{% endhighlight %}
+  </div>
+</article>

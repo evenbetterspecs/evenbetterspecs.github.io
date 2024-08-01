@@ -1,0 +1,25 @@
+<article>
+  <h2 id="expect-vs-should">
+    <a href="#expect-vs-should">
+      Expect vs should syntax
+    </a>
+  </h2>
+
+  <p>Always use <code>expect</code> instead of <code>should</code>.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+it 'creates a resource' do
+  response.code.should eq('200')
+end"
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+it 'creates a resource' do
+  expect(response.code).to eq('200')
+end
+{% endhighlight %}
+  </div>
+</article>

@@ -1,0 +1,45 @@
+<article>
+  <h2 id="group-expectations">
+    <a href="#group-expectations">
+      Group Expectations
+    </a>
+  </h2>
+
+  <p>
+    Creating `it` for each expectation can lead to a terrible test performance. Try to group expectations that 
+    use a similar data setup to improve performance and make the tests more readable.
+  </p>
+
+  <div class="bad">
+{% highlight ruby %}
+it do 
+  user = create(:user)
+
+  get(user_path(user))
+
+  expect(response).to have_http_status(200)
+end
+
+it do 
+  user = create(:user)
+
+  get(user_path(user))
+
+  expect(response).to respond_with_content_type(:json)
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+it "responds with 200 http status and a JSON content type" do 
+  user = create(:user)
+
+  get(user_path(user))
+
+  expect(response).to have_http_status(200)
+  expect(response).to respond_with_content_type(:json)
+end
+{% endhighlight %}
+  </div>
+</article>
