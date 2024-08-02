@@ -9,20 +9,24 @@
 
   <div class="bad">
 {% highlight ruby %}
-describe 'the authenticate method for User' do
-end
+describe 'User' do
+  describe 'the authenticate method for User' do
+  end
 
-describe 'if the user is an admin' do
+  describe 'if the user is an admin' do
+  end
 end
 {% endhighlight %}
   </div>
 
   <div class="good">
 {% highlight ruby %}
-describe '.authenticate' do
-end
+describe User do
+  describe '.authenticate' do
+  end
 
-describe '#admin?' do
+  describe '#admin?' do
+  end
 end
 {% endhighlight %}
   </div>

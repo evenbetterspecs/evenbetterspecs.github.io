@@ -1,0 +1,45 @@
+<article>
+  <h2 id="instance-double-over-double">
+    <a href="#instance-double-over-double">
+      Instance double over double
+    </a>
+  </h2>
+
+  <p>Instance double ensures the object responds to methods being called, which is not true for double.</p>
+
+  <div class="example">
+{% highlight ruby %}
+class User
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+it "passes" do
+  user = double(:user, name: "Ayrton Senna")
+  puts user.name
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+it "fails" do
+  user = instance_double(User, name: "Ayrton Senna")
+  puts user.name
+end
+{% endhighlight %}
+  </div>
+
+  <p>The above test will fail with the following message since the <code>name</code> method really doesn't exist.</p>
+
+  <div class="output">
+{% highlight text %}
+the User class does not implement the instance method: name. Perhaps you meant to use `class_double` instead?
+{% endhighlight %}
+  </div>
+</article>

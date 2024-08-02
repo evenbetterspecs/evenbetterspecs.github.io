@@ -31,10 +31,10 @@
 }
 
 .output {
-  color: #bbb;
+  color: #333;
 
   &::before {
-    content: "FORMATTED OUTPUT";
+    content: "OUTPUT";
   }
 }
 
