@@ -10,12 +10,11 @@
   <div class="bad">
 {% highlight ruby %}
 shared_examples 'a normal dog' do
-  it { is_expected.to be_able_to_jump }
   it { is_expected.to be_able_to_bark }
 end
 
-RSpec.describe Dog do
-  subject { described_class.new(able_to_jump?: true, able_to_bark?: true) }
+describe Dog do
+  subject { described_class.new(able_to_bark?: true) }
   it_behaves_like 'a normal dog'
 end
 {% endhighlight %}
@@ -23,12 +22,13 @@ end
 
   <div class="good">
 {% highlight ruby %}
-RSpec.describe Dog do
-  it 'barks and jumps' do
-    subject = described_class.new(able_to_jump?: true, able_to_bark?: true)
+describe Dog do
+  describe '#able_to_bark?' do
+    it 'barks' do
+      subject = described_class.new(able_to_bark?: true)
 
-    expect(subject).to be_able_to_jump
-    expect(subject).to be_able_to_bark
+      expect(subject.able_to_bark?).to eq(true)
+    end
   end
 end
 {% endhighlight %}

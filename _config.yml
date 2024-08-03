@@ -21,6 +21,12 @@ nav_external_links:
   - title: Use contexts
     url: "#use-contexts"
     hide_icon: true
+  - title: Factories, not fixtures
+    url: "#factories-not-fixtures"
+    hide_icon: true
+  - title: Leverage described class
+    url: "#leverage-described-class"
+    hide_icon: true
   - title: Short description
     url: "#short-description"
     hide_icon: true
@@ -35,9 +41,6 @@ nav_external_links:
     hide_icon: true
   - title: Instance double over double
     url: "#instance-double-over-double"
-    hide_icon: true
-  - title: Factories, not fixtures
-    url: "#factories-not-fixtures"
     hide_icon: true
   - title: Let's not
     url: "#lets-not"

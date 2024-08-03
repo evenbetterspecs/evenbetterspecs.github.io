@@ -5,24 +5,28 @@
     </a>
   </h2>
 
-  <p>Avoid hooks whenever possible since they tend to make your tests complicated over time.</p>
+  <p>Avoid hooks since they usually cause your tests to become more complex in the long run.</p>
 
   <div class="bad">
 {% highlight ruby %}
-describe '#index' do
+describe 'GET /' do
   context 'when user is authenticated' do
     before do
       @user = create(:user)
       sign_in @user
+      get profile_path
     end
 
-    context 'when user is admin' do
+    context 'when user has a profile' do
       it 'returns 200' do
+        create(:profile, user: @user)
+        expect(response.code).to eq('200')
       end
     end
 
-    context 'when user is not admin' do
-      it 'returns 401' do
+    context 'when user does not have a profile' do
+      it 'returns 404' do
+        expect(response.code).to eq('404')
       end
     end
   end
@@ -32,19 +36,28 @@ end
 
   <div class="good">
 {% highlight ruby %}
-describe '#index' do
+describe 'GET /' do
   context 'when user is authenticated' do
-    context 'when user is admin' do
+    context 'when user has a profile' do
       it 'returns 200' do
         user = create(:user)
+        create(:profile, user: user)
         sign_in user
+
+        get profile_path
+
+        expect(response.code).to eq('200')
       end
     end
 
-    context 'when user is not admin' do
-      it 'returns 401' do
+    context 'when user does not have a profile' do
+      it 'returns 404' do
         user = create(:user)
         sign_in user
+
+        get profile_path
+
+        expect(response.code).to eq('404')
       end
     end
   end

@@ -1,0 +1,49 @@
+<article>
+  <h2 id="leverage-described-class">
+    <a href="#leverage-described-class">
+      Leverage described class
+    </a>
+  </h2>
+
+  <p>Tests are not supposed to be DRY, but that doesn't mean we need to repeat ourselves in vain. Leverage <code>described_class</code> to make your tests maintainable over the years.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+describe Pilot do
+  describe '.most_successful' do
+    it 'returns the most successful pilot' do
+      senna = create(:pilot, name: 'Ayrton Senna')
+      create(:pilot, name: 'Alain Prost')
+      create(:race, winner: senna)
+
+      most_successful_pilot = Pilot.most_successful
+
+      expect(most_successful_pilot.name).to eq('Ayrton Senna')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+
+  <div class="good">
+{% highlight ruby %}
+describe Pilot do
+  describe '.most_successful' do
+    it 'returns the most successful pilot' do
+      senna = create(:pilot, name: 'Ayrton Senna')
+      create(:pilot, name: 'Alain Prost')
+      create(:race, winner: senna)
+
+      most_successful_pilot = described_class.most_successful
+
+      expect(most_successful_pilot.name).to eq('Ayrton Senna')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+
+  <p>If the class <code>Pilot</code> ever gets renamed, one just need to change it at the top level <code>describe</code>.</p>
+</article>

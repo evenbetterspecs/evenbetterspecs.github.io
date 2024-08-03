@@ -5,7 +5,7 @@
     </a>
   </h2>
 
-  <p>Contexts are a powerful way to make your tests clear and well organized (they keep tests easy to read). They should start with <code>when</code>.</p>
+  <p>Contexts are a powerful way to make your tests clear and well organized. They should start with <code>when</code>.</p>
 
   <div class="bad">
 {% highlight ruby %}
@@ -14,7 +14,7 @@ it 'has 200 status code if logged in' do
 end
 
 describe 'it returns 401 status code if not logged in' do
-  expect(response.code).to eq('401')
+  it { expect(response.code).to eq('401') }
 end
 {% endhighlight %}
   </div>
@@ -22,7 +22,9 @@ end
   <div class="good">
 {% highlight ruby %}
 context 'when logged in' do
-  expect(response.code).to eq('200')
+  it 'returns 200 status code' do
+    expect(response.code).to eq('200')
+  end
 end
 
 context 'when logged out' do

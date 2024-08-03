@@ -5,7 +5,7 @@
     </a>
   </h2>
 
-  <p>Testing is a good practice, but if you do not test the edge cases, it will not be useful. Test valid, edge and invalid case. For example, consider the following action..</p>
+  <p>Testing is a good practice, but if you do not test the edge cases, it will not be useful. Test valid, edge and invalid cases.</p>
 
   <p class="note alert">If you have way too many cases to test, it might be an indication your subject class is doing too much and must be break down into other classes.</p>
 
@@ -23,8 +23,8 @@ end
 
   <div class="bad">
 {% highlight ruby %}
-describe '#destroy' do
-  context 'when product exists' do
+describe 'DELETE /:id' do
+  context 'when the product exists' do
     it 'deletes the product' do
     end
   end
@@ -34,13 +34,13 @@ end
 
   <div class="good">
 {% highlight ruby %}
-describe '#destroy' do
-  context 'when product exists' do
+describe 'DELETE /:id' do
+  context 'when the product exists' do
     it 'deletes the product' do
     end
   end
 
-  context 'when product does not exist' do
+  context 'when the product does not exist' do
     it 'raises 404' do
     end
   end

@@ -5,7 +5,7 @@
     </a>
   </h2>
 
-  <p>Be clear about what method you are describing. For instance, use the Ruby documentation convention of <code>.</code> when referring to a class method's name and <code>#</code> when referring to an instance method's name.</p>
+  <p>Be clear about what you are testing.</p>
 
   <div class="bad">
 {% highlight ruby %}
@@ -19,6 +19,8 @@ end
 {% endhighlight %}
   </div>
 
+  <p>Use the Ruby documentation convention of <code>.</code> when referring to a class method's name and <code>#</code> when referring to an instance method's name.</p>
+
   <div class="good">
 {% highlight ruby %}
 describe User do
@@ -26,6 +28,20 @@ describe User do
   end
 
   describe '#admin?' do
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <p>In request tests, describe the methods and paths under test.</p>
+
+  <div class="good">
+{% highlight ruby %}
+describe UsersController, type: :request do
+  describe 'POST /' do
+  end
+
+  describe 'GET /' do
   end
 end
 {% endhighlight %}

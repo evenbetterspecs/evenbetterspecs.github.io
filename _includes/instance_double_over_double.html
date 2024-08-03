@@ -20,7 +20,7 @@ end
   <div class="bad">
 {% highlight ruby %}
 it "passes" do
-  user = double(:user, name: "Ayrton Senna")
+  user = double(:user, name: "Gustavo Kuerten")
   puts user.name
 end
 {% endhighlight %}
@@ -29,7 +29,7 @@ end
   <div class="good">
 {% highlight ruby %}
 it "fails" do
-  user = instance_double(User, name: "Ayrton Senna")
+  user = instance_double(User, name: "Gustavo Kuerten")
   puts user.name
 end
 {% endhighlight %}

@@ -9,23 +9,23 @@
 
   <div class="bad">
 {% highlight ruby %}
-it 'returns 422 when users first_name is missing from params and when users last_name is missing from params' do
+it 'returns 422 when user first_name is missing from params and when user last_name is missing from params' do
 end
 
-it 'returns 422 when users first_name is missing from params \
-    and when users last_name is missing from params' do
+it 'returns 422 when user first_name is missing from params \
+    and when user last_name is missing from params' do
 end
 {% endhighlight %}
   </div>
 
   <div class="good">
 {% highlight ruby %}
-context 'when users first_name is missing from params' do
+context 'when user first_name is missing from params' do
   it 'returns 422' do
   end
 end
 
-context 'when users last_name is missing' do
+context 'when user last_name is missing from params' do
   it 'returns 422' do
   end
 end

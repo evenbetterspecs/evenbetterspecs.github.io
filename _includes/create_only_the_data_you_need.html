@@ -9,12 +9,12 @@
 
   <div class="bad">
 {% highlight ruby %}
-describe '#featured_product' do
+describe '.featured_product' do
   it 'returns the featured product' do
     create_list(:product, 5)
     product_featured = create(:product, featured: true)
 
-    expect(subject.featured_product).to eq(product_featured)
+    expect(described_class.featured_product).to eq(product_featured)
   end
 end
 {% endhighlight %}
@@ -22,12 +22,12 @@ end
 
   <div class="good">
 {% highlight ruby %}
-describe '#featured_product' do
+describe '.featured_product' do
   it 'returns the featured product' do
-    product_non_featured = create(:product, featured: false)
+    create(:product, featured: false)
     product_featured = create(:product, featured: true)
 
-    expect(subject.featured_product).to eq(product_featured)
+    expect(described_class.featured_product).to eq(product_featured)
   end
 end
 {% endhighlight %}

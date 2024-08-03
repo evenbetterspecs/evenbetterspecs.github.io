@@ -5,11 +5,11 @@
     </a>
   </h2>
 
-  <p><a href="https://github.com/thoughtbot/factory_bot" target="_blank">Factories</a> are more flexible and easy to work with.</p>
+  <p><a href="https://github.com/thoughtbot/factory_bot" target="_blank">Factories</a> are more flexible and easier to work with.</p>
 
   <div class="example">
 {% highlight ruby %}
-def name
+def full_name
   "#{first_name} #{last_name}"
 end
 {% endhighlight %}
@@ -18,8 +18,9 @@ end
   <div class="good">
 {% highlight ruby %}
 it 'returns the full name' do
-  user = create(:user, fist_name: 'Ayrton', last_name: 'Senna')
-  expect(user.name).to eq('Ayrton Senna')
+  user = create(:user, fist_name: 'Santos', last_name: 'Dumont')
+
+  expect(user.full_name).to eq('Santos Dumont')
 end
 {% endhighlight %}
   </div>
@@ -29,8 +30,9 @@ end
   <div class="good">
 {% highlight ruby %}
 it 'returns the full name' do
-  user = build_stubbed(:user, fist_name: 'Ayrton', last_name: 'Senna')
-  expect(user.name).to eq('Ayrton Senna')
+  user = build_stubbed(:user, fist_name: 'Santos', last_name: 'Dumont')
+
+  expect(user.full_name).to eq('Santos Dumont')
 end
 {% endhighlight %}
   </div>
