@@ -1,5 +1,5 @@
 title: Even Better Specs
-description: Guidelines for readable and maintainable tests
+description: Guidelines for maintainable tests
 theme: just-the-docs
 
 url: https://evenbetterspecs.github.io
@@ -41,6 +41,9 @@ nav_external_links:
     hide_icon: true
   - title: Expect vs should
     url: "#expect-vs-should"
+    hide_icon: true
+  - title: Redundant require
+    url: "#redundant-require"
     hide_icon: true
   - title: Instance double over double
     url: "#instance-double-over-double"

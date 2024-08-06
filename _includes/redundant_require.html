@@ -1,0 +1,35 @@
+<article>
+  <h2 id="redundant-require">
+    <a href="#redundant-require">
+      Redundant require
+    </a>
+  </h2>
+
+  <p>Remove any redundant <code>require</code> in your spec files. Use <code>.rspec</code> file instead.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+# spec/models/user_spec.rb
+require 'rails_helper'
+
+describe User do
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+# spec/models/user_spec.rb
+describe User do
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+# .rspec
+--require rails_helper
+{% endhighlight %}
+  </div>
+
+</article>
