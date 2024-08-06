@@ -36,6 +36,9 @@ nav_external_links:
   - title: All possible cases
     url: "#all-possible-cases"
     hide_icon: true
+  - title: Request vs controller specs
+    url: "#request-vs-controller-specs"
+    hide_icon: true
   - title: Expect vs should
     url: "#expect-vs-should"
     hide_icon: true

@@ -1,0 +1,46 @@
+<article>
+  <h2 id="request-vs-controller-specs">
+    <a href="#request-vs-controller-specs">
+      Request vs controller specs
+    </a>
+  </h2>
+
+  <p>Do request tests instead of controller tests.</p>
+
+  <blockquote>The official recommendation of the Rails team and the RSpec core team is to write request specs instead. Request specs allow you to focus on a single controller action, but unlike controller tests involve the router, the middleware stack, and both rack requests and responses. This adds realism to the test that you are writing, and helps avoid many of the issues that are common in controller specs. In Rails 5, request specs are significantly faster than either request or controller specs were in Rails 4.</blockquote>
+
+  <p>
+    See <a href="https://rspec.info/blog/2016/07/rspec-3-5-has-been-released/">source.</a>
+  </p>
+
+  <div class="bad">
+{% highlight ruby %}
+describe UsersController, type: :controller do
+  describe "#index" do
+    it "returns a successful response" do
+      get :index
+
+      expect(response.code).to eq('200')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe UsersController, type: :request do
+  describe "GET /" do
+    it "returns a successful response" do
+      user = create(:user, name: "Carlos Chagas")
+
+      get users_path
+
+      expect(response.code).to eq('200')
+      expect(response.body).to include("Carlos Chagas")
+    end
+  end
+end
+{% endhighlight %}
+  </div>
+</article>
