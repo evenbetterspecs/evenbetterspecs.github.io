@@ -27,6 +27,9 @@ nav_external_links:
   - title: Leverage described class
     url: "#leverage-described-class"
     hide_icon: true
+  - title: Use subject
+    url: "#use-subject"
+    hide_icon: true
   - title: Short description
     url: "#short-description"
     hide_icon: true

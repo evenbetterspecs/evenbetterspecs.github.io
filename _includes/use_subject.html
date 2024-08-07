@@ -1,0 +1,62 @@
+<article>
+  <h2 id="use-subject">
+    <a href="#use-subject">
+      Use subject
+    </a>
+  </h2>
+
+  <p>Use <code>subject</code> instead of <code>described_class.new</code> when no argument is given to the initializer.</p>
+
+  <div class="example">
+{% highlight ruby %}
+class Calculator
+  attr_reader :base
+
+  def initialize(base = 0)
+    @base = base
+  end
+
+  def add(number1, number2)
+    base + number1 + number2
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#add' do
+ it 'sums two numbers' do
+   calculator = described_class.new
+
+   expect(calculator.add(1, 2)).to eq(3)
+ end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#add' do
+  it 'sums two numbers' do
+    expect(subject.add(1, 2)).to eq(3)
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <p>It can be overridden when argument is given to the initializer.</p>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#add' do
+  it 'sums two numbers' do
+    subject = described_class.new(5)
+
+    expect(subject.add(1, 2)).to eq(8)
+  end
+end
+{% endhighlight %}
+  </div>
+
+</article>
