@@ -30,7 +30,7 @@ end
   <div class="good">
 {% highlight ruby %}
 describe UsersController, type: :request do
-  describe "GET /" do
+  describe "#index" do
     it "returns a successful response" do
       user = create(:user, name: "Carlos Chagas")
 

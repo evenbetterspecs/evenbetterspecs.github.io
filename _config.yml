@@ -15,7 +15,7 @@ nav_external_links:
   # - title: Guiding principles
   #   url: "#guiding-principles"
   #   hide_icon: true
-  - title: Describe what you are testing
+  - title: Describe what you're testing
     url: "#describe"
     hide_icon: true
   - title: Use contexts
@@ -65,6 +65,9 @@ nav_external_links:
     hide_icon: true
   - title: Stub HTTP requests
     url: "#stub-http-requests"
+    hide_icon: true
+  - title: Stub environment variables
+    url: "#stub-environment-variables"
     hide_icon: true
   - title: Create only the data you need
     url: "#create-only-the-data-you-need"

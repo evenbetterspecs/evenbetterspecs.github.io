@@ -1,0 +1,55 @@
+<article>
+  <h2 id="stub-environment-variables">
+    <a href="#stub-environment-variables">
+      Stub environment variables
+    </a>
+  </h2>
+
+  <p>Prefer to stub environment variables whenever possible so your tests become more self-contained, the <a href="https://rubygems.org/gems/stub_env" target="_blank">stub_env</a> gem might help you with that.</p>
+
+  <div class="example">
+{% highlight ruby %}
+def notify_sales_team
+  mail(
+    to: ENV['SALES_TEAM_EMAIL'],
+    subject: 'New sale'
+  )
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '#notify_sales_team' do
+  it 'prepares the email' do
+    subject = described_class.notify_sales_team
+
+    expect(subject.to).to eq(['sales-group@company.com'])
+    expect(subject.subject).to eq('New sale')
+  end
+end
+{% endhighlight %}
+  </div>
+
+  <div class="bad">
+{% highlight ruby %}
+# .env.test
+SALES_TEAM_EMAIL='sales-group@company.com'
+{% endhighlight %}
+  </div>
+
+  <div class="good">
+{% highlight ruby %}
+describe '#notify_sales_team' do
+  it 'prepares the email' do
+    stub_env('SALES_TEAM_EMAIL', 'sales-group@company.com')
+
+    subject = described_class.notify_sales_team
+
+    expect(subject.to).to eq(['sales-group@company.com'])
+    expect(subject.subject).to eq('New sale')
+  end
+end
+{% endhighlight %}
+  </div>
+</article>

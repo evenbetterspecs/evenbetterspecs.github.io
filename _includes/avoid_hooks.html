@@ -9,7 +9,7 @@
 
   <div class="bad">
 {% highlight ruby %}
-describe 'GET /' do
+describe '#index' do
   context 'when user is authenticated' do
     before do
       @user = create(:user)
@@ -36,7 +36,7 @@ end
 
   <div class="good">
 {% highlight ruby %}
-describe 'GET /' do
+describe '#index' do
   context 'when user is authenticated' do
     context 'when user has a profile' do
       it 'returns 200' do
