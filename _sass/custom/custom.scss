@@ -7,6 +7,24 @@
   letter-spacing: 0.4px;
 }
 
+.github-star-wrapper {
+  width: 54px;
+  margin-top: 18px;
+}
+
+.nav-list .nav-list-item .nav-list-link.active {
+  font-weight: normal;
+  // background-image: none;
+
+  // &::before {
+  //   content: "\00B7";
+  //   position: absolute;
+  //   top: 1px;
+  //   left: 17px;
+  //   font-size: 3em;
+  // }
+}
+
 .example,
 .bad,
 .good,

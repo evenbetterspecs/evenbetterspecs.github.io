@@ -1,1 +1,32 @@
 &nbsp;
+
+<script>
+  window.jtd.onReady(function(){
+    var hash = window.location.hash;
+    var links = document.querySelectorAll('#site-nav a');
+
+    links.forEach(function(link) {
+      link.classList.remove('active');
+
+      if (hash) {
+        if (link.getAttribute('href').includes(hash)) {
+          link.classList.add('active');
+        }
+      }
+    });
+  });
+
+  var nav = document.querySelector('#site-nav');
+
+  window.jtd.addEvent(nav, 'click', function(e){
+    var links = document.querySelectorAll('#site-nav a');
+
+    links.forEach(function(link) {
+      link.classList.remove('active');
+
+      if (link.getAttribute('href') == e.target.getAttribute('href')) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>

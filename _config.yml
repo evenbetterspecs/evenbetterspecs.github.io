@@ -6,8 +6,8 @@ url: https://evenbetterspecs.github.io
 
 favicon_ico: "/favicon.ico"
 
-aux_links:
-  GitHub: https://github.com/evenbetterspecs/evenbetterspecs.github.io
+# aux_links:
+#   GitHub: https://github.com/evenbetterspecs/evenbetterspecs.github.io
 
 # External navigation links
 nav_external_links:
@@ -17,8 +17,8 @@ nav_external_links:
   # - title: Guiding principles
   #   url: "#guiding-principles"
   #   hide_icon: true
-  - title: Describe what you're testing
-    url: "#describe"
+  - title: Describe what you are testing
+    url: "#describe-what-you-are-testing"
     hide_icon: true
   - title: Use contexts
     url: "#use-contexts"
