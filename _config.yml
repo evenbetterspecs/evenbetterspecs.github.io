@@ -1,8 +1,10 @@
 title: Even Better Specs
-description: Guidelines for maintainable tests
+description: Guidelines for Maintainable Tests
 theme: just-the-docs
 
 url: https://evenbetterspecs.github.io
+
+favicon_ico: "/favicon.ico"
 
 aux_links:
   GitHub: https://github.com/evenbetterspecs/evenbetterspecs.github.io
