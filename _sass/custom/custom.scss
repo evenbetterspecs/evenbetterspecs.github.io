@@ -25,6 +25,15 @@
   // }
 }
 
+.discuss-link {
+  display: inline-block;
+  padding-top: 15px;
+
+  &::after {
+    content: " →";
+  }
+}
+
 .example,
 .bad,
 .good,
