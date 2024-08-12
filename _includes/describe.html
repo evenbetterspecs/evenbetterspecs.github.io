@@ -33,19 +33,33 @@ end
 {% endhighlight %}
   </div>
 
-  <p>In request tests, describe the methods and paths under test.</p>
+  <p>In request tests, describe the controller constant and its actions.</p>
 
   <div class="good">
 {% highlight ruby %}
 describe UsersController, type: :request do
   describe '#index' do
+    it 'returns a successful response' do
+      get users_url
+
+      expect(response.code).to eq('200')
+    end
   end
 
   describe '#create' do
+    it 'creates a user' do
+      post users_url, params: { user: { name: 'Tom Jobim' } }
+
+      expect(User.last.name).to eq('Tom Jobim')
+    end
   end
 end
 {% endhighlight %}
   </div>
+
+  <h3>RuboCop</h3>
+
+  <p>You can enforce this guideline using the cop <a href="https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecdescribeclass" target="_blank">RSpec/DescribeClass</a> from the <a href="https://docs.rubocop.org/rubocop-rspec/installation.html" target="_blank">rubocop-rspec</a> gem.</p>
 
   <a class="discuss-link" target="_blank" href="https://github.com/evenbetterspecs/evenbetterspecs.github.io/discussions/2">Discuss this guideline</a>
 </article>

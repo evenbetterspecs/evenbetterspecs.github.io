@@ -53,5 +53,18 @@ end
 {% endhighlight %}
   </div>
 
+  <h3>RuboCop</h3>
+
+  <p>You can enforce this guideline using the cop <a href="https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecmultiplememoizedhelpers" target="_blank">RSpec/MultipleMemoizedHelpers</a> from the <a href="https://docs.rubocop.org/rubocop-rspec/installation.html" target="_blank">rubocop-rspec</a> gem:</p>
+
+  <div class="example">
+{% highlight ruby %}
+# .rubocop.yml
+RSpec/MultipleMemoizedHelpers:
+  Max: 0
+  AllowSubject: false
+{% endhighlight %}
+  </div>
+
   <a class="discuss-link" target="_blank" href="https://github.com/evenbetterspecs/evenbetterspecs.github.io/discussions/14">Discuss this guideline</a>
 </article>
