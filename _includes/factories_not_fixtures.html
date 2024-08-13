@@ -18,7 +18,7 @@ end
   <div class="good">
 {% highlight ruby %}
 it 'returns the full name' do
-  user = create(:user, fist_name: 'Santos', last_name: 'Dumont')
+  user = create(:user, first_name: 'Santos', last_name: 'Dumont')
 
   expect(user.full_name).to eq('Santos Dumont')
 end
@@ -30,7 +30,7 @@ end
   <div class="good">
 {% highlight ruby %}
 it 'returns the full name' do
-  user = build_stubbed(:user, fist_name: 'Santos', last_name: 'Dumont')
+  user = build_stubbed(:user, first_name: 'Santos', last_name: 'Dumont')
 
   expect(user.full_name).to eq('Santos Dumont')
 end
