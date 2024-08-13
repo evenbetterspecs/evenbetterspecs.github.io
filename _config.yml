@@ -76,3 +76,6 @@ nav_external_links:
   - title: Create only the data you need
     url: "#create-only-the-data-you-need"
     hide_icon: true
+  - title: Who is using it
+    url: "#who-is-using-it"
+    hide_icon: true
