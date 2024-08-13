@@ -13,7 +13,7 @@
 {% highlight ruby %}
 
 describe '#full_name' do
-  let(:user) { build(:user, fist_name: 'Edson', last_name: 'Pelé') }
+  let(:user) { build(:user, first_name: 'Edson', last_name: 'Pelé') }
 
   context 'when first name and last name are present' do
     it 'returns the full name' do
@@ -36,7 +36,7 @@ end
 describe '#full_name' do
   context 'when first name and last name are present' do
     it 'returns the full name' do
-      user = build(:user, fist_name: 'Edson', last_name: 'Pelé')
+      user = build(:user, first_name: 'Edson', last_name: 'Pelé')
 
       expect(user.full_name).to eq('Edson Pelé')
     end
@@ -44,7 +44,7 @@ describe '#full_name' do
 
   context 'when last name is not present' do
     it 'returns the first name' do
-      user = build(:user, fist_name: 'Edson', last_name: nil)
+      user = build(:user, first_name: 'Edson', last_name: nil)
 
       expect(user.full_name).to eq('Edson')
     end
