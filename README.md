@@ -1,6 +1,6 @@
 # Even Better Specs
 
-[Event Better Specs](https://evenbetterspecs.github.io/) is an opinionated set of best practices to support the creation of tests that are easy to read and maintain.
+[Even Better Specs](https://evenbetterspecs.github.io/) is an opinionated set of best practices to support the creation of tests that are easy to read and maintain.
 
 ## Installation
 
