@@ -9,13 +9,20 @@
 
   <div class="bad">
 {% highlight ruby %}
-shared_examples 'a normal dog' do
-  it { is_expected.to be_able_to_bark }
+shared_examples 'a barking animal' do
+  it 'barks' do
+    expect(animal.able_to_bark?).to eq(true)
+  end
 end
 
 describe Dog do
-  subject { described_class.new(able_to_bark?: true) }
-  it_behaves_like 'a normal dog'
+  let(:animal) { described_class.new(able_to_bark: true) }
+  it_behaves_like 'a barking animal'
+end
+
+describe Fox do
+  let(:animal) { described_class.new(able_to_bark: true) }
+  it_behaves_like 'a barking animal'
 end
 {% endhighlight %}
   </div>
@@ -25,7 +32,17 @@ end
 describe Dog do
   describe '#able_to_bark?' do
     it 'barks' do
-      subject = described_class.new(able_to_bark?: true)
+      subject = described_class.new(able_to_bark: true)
+
+      expect(subject.able_to_bark?).to eq(true)
+    end
+  end
+end
+
+describe Fox do
+  describe '#able_to_bark?' do
+    it 'barks' do
+      subject = described_class.new(able_to_bark: true)
 
       expect(subject.able_to_bark?).to eq(true)
     end
