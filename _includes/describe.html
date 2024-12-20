@@ -33,7 +33,35 @@ end
 {% endhighlight %}
   </div>
 
-  <p>In request tests, describe the controller constant and its actions.</p>
+  <h3 id="describe-request-tests">
+    <a href="#describe-request-tests">
+      Describing request tests
+    </a>
+  </h3>
+
+  <p>In request tests, describe the controller constant and its actions so one can easily spot what is being tested.</p>
+
+  <div class="bad">
+{% highlight ruby %}
+describe '/users', type: :request do
+  describe 'GET #index' do
+    it 'returns a successful response' do
+      get users_url
+
+      expect(response.code).to eq('200')
+    end
+  end
+
+  describe 'POST /users' do
+    it 'creates a user' do
+      post users_url, params: { user: { name: 'Tom Jobim' } }
+
+      expect(User.last.name).to eq('Tom Jobim')
+    end
+  end
+end
+{% endhighlight %}
+  </div>
 
   <div class="good">
 {% highlight ruby %}
