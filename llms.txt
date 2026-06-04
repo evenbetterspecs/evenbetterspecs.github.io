@@ -1,0 +1,13 @@
+# Even Better Specs
+
+> An opinionated set of best practices for writing tests that are easy to read and maintain. It focuses on the Ruby testing framework RSpec, but some of it could apply to other frameworks and languages.
+
+Guiding principles: tests must be self-contained, not DRY; tests should follow the Arrange-Act-Assert pattern.
+
+## Docs
+
+- [Full guidelines (markdown)](https://evenbetterspecs.github.io/index.md): Complete set of all 20 guidelines with bad/good RSpec code examples and RuboCop enforcement notes
+
+## Optional
+
+- [Home page (HTML)](https://evenbetterspecs.github.io/): The rendered website
