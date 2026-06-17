@@ -774,7 +774,7 @@ end
 
 ## Stub HTTP requests
 
-Sometimes you need to access external services. In these cases you can't rely on the real service but you should stub it with solutions like [webmock](https://github.com/bblimke/webmock) or [VCR](https://github.com/vcr/vcr).
+Sometimes you need to access external services. In these cases you can't rely on the real service but you should stub it with solutions like [http_decoy](https://github.com/jibranusman95/http_decoy), [webmock](https://github.com/bblimke/webmock) or [VCR](https://github.com/vcr/vcr).
 
 Example:
 
