@@ -6,7 +6,8 @@ Guiding principles: tests must be self-contained, not DRY; tests should follow t
 
 ## Docs
 
-- [Full guidelines (markdown)](https://evenbetterspecs.github.io/index.md): Complete set of all 20 guidelines with bad/good RSpec code examples and RuboCop enforcement notes
+- [Full guidelines (markdown)](https://evenbetterspecs.github.io/index.md): Complete set of all 20 guidelines with bad/good RSpec code examples
+- [even_better_specs gem](https://rubygems.org/gems/even_better_specs): Enforces these guidelines with RuboCop
 
 ## Optional
 

@@ -15,6 +15,8 @@ It focuses on the [Ruby](https://www.ruby-lang.org/en/) testing framework [RSpec
 - tests must be [self-contained](https://thoughtbot.com/blog/the-self-contained-test), not DRY
 - tests should follow the [Arrange-Act-Assert](https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/) pattern
 
+You can enforce these guidelines with the [even_better_specs](https://rubygems.org/gems/even_better_specs) gem.
+
 ---
 
 ## Describe what you are testing
@@ -95,8 +97,6 @@ describe UsersController, type: :request do
 end
 ```
 
-RuboCop: You can enforce this guideline using the cop [RSpec/DescribeClass](https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecdescribeclass) from the [rubocop-rspec](https://docs.rubocop.org/rubocop-rspec/installation.html) gem.
-
 ---
 
 ## Use contexts
@@ -130,8 +130,6 @@ context 'when logged out' do
   end
 end
 ```
-
-RuboCop: You can enforce this guideline using the cops [RSpec/ContextMethod](https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspeccontextmethod) and [RSpec/ContextWording](https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspeccontextwording) from the [rubocop-rspec](https://docs.rubocop.org/rubocop-rspec/installation.html) gem.
 
 ---
 
@@ -212,8 +210,6 @@ end
 ```
 
 If the class `Pilot` ever gets renamed, one just need to change it at the top level `describe`.
-
-RuboCop: You can enforce this guideline using the cop [RSpec/DescribedClass](https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecdescribedclass) from the [rubocop-rspec](https://docs.rubocop.org/rubocop-rspec/installation.html) gem.
 
 ---
 
@@ -489,8 +485,6 @@ end
 --require rails_helper
 ```
 
-RuboCop: You can enforce this guideline with the custom cop [RSpec/RedundantRequireRailsHelper](https://gist.github.com/glaucocustodio/36e0fafb9137a482ec8cfdc794ca36a7).
-
 ---
 
 ## Instance double over double
@@ -530,8 +524,6 @@ The above test will fail with the following message since the `name` method real
 ```
 the User class does not implement the instance method: name. Perhaps you meant to use `class_double` instead?
 ```
-
-RuboCop: You can enforce this guideline using the cop [RSpec/VerifiedDoubles](https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecverifieddoubles) from the [rubocop-rspec](https://docs.rubocop.org/rubocop-rspec/installation.html) gem.
 
 ---
 
@@ -582,15 +574,6 @@ describe '#full_name' do
     end
   end
 end
-```
-
-RuboCop: You can enforce this guideline using the cop [RSpec/MultipleMemoizedHelpers](https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecmultiplememoizedhelpers) from the [rubocop-rspec](https://docs.rubocop.org/rubocop-rspec/installation.html) gem:
-
-```ruby
-# .rubocop.yml
-RSpec/MultipleMemoizedHelpers:
-  Max: 0
-  AllowSubject: false
 ```
 
 ---
